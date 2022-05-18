@@ -42,7 +42,7 @@ class AnaSayfaActivity : AppCompatActivity() {
         progressDialog.setMessage("Yükleniyor,lütfen bekleyiniz...")
         progressDialog.show()
 
-        database.collection("Post").orderBy("tarih", Query.Direction.DESCENDING)
+        database.collection("Post").orderBy("begeniSayisi", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 if(exception!=null){
                     Toast.makeText(this,exception.localizedMessage, Toast.LENGTH_LONG).show()
@@ -58,8 +58,9 @@ class AnaSayfaActivity : AppCompatActivity() {
                                 val talepDetayi=documents.get("talepdetayi") as String
                                 val gorselUrl=documents.get("gorselurl") as String
                                 val ilgiliKurum=documents.get("ilgilikurum") as String
+                                val begeniSayisi=documents.get("begeniSayisi") as String
 
-                                val indirilenPost= Post(kullaniciAdi,talepDetayi,ilgiliKurum,gorselUrl)
+                                val indirilenPost= Post(kullaniciAdi,talepDetayi,ilgiliKurum,gorselUrl,begeniSayisi)
                                 postListesi.add(indirilenPost)
 
                             }

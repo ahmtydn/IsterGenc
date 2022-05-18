@@ -26,8 +26,7 @@ class AnaMenuRecyclerAdapter(val postList:ArrayList<Post>): RecyclerView.Adapter
         holder.itemView.recycler_row_kullanici_adi.text=postList[position].guncelKullaniciAdi
         holder.itemView.recycler_row_talep_detay.text=postList[position].talepDetayi
         holder.itemView.recycler_row_hashtag.text=postList[position].ilgiliKurum
-
-        holder.itemView.imzaSayisi.text=(2000..5000).random().toString()
+        holder.itemView.imzaSayisi.text=postList[position].begeniSayisi
 
         if (postList[position].gorselUrl.equals("null"))
         {

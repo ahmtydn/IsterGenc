@@ -98,16 +98,15 @@ class PaylasimYapActivity : AppCompatActivity() {
                                                 val downloadUrl=it.toString()
                                                 val talepDetayi=talepDetay.text.toString()
                                                 val ilgiliKurum=kurumSpinner.selectedItem.toString()
-                                                val tarih= Timestamp.now()
+                                                val begeni= (2000..5000).random().toString()
 
-                                                println("alt:${kullaniciAdi}")
                                                 //veri tabanı işlemleri
 
                                                 postHashMap.put("gorselurl",downloadUrl)
                                                 postHashMap.put("kullaniciAdi",kullaniciAdi)
                                                 postHashMap.put("talepdetayi",talepDetayi)
                                                 postHashMap.put("ilgilikurum",ilgiliKurum)
-                                                postHashMap.put("tarih",tarih)
+                                                postHashMap.put("begeniSayisi",begeni)
 
                                                 database.collection("Post").add(postHashMap).addOnCompleteListener {
                                                     if(it.isSuccessful){
@@ -149,27 +148,21 @@ class PaylasimYapActivity : AppCompatActivity() {
                     }else{
                         if (snapshot!=null){
                             if (!snapshot.isEmpty){
-
                                 val documents=snapshot.documents
                                 for (documents in documents){
                                     if(guncelKullaniciEmaili == documents.get("kullaniciemail") as String){
 
                                         val kullaniciAdi=documents.get("kullaniciAdi") as String
-                                        println("alt:${kullaniciAdi}")
                                         val downloadUrl="null"
                                         val talepDetayi=talepDetay.text.toString()
                                         val ilgiliKurum=kurumSpinner.selectedItem.toString()
-                                        val tarih= Timestamp.now()
-
-
+                                        val begeni= (2000..5000).random().toString()
                                         //veri tabanı işlemleri
-
                                         postHashMap.put("gorselurl",downloadUrl)
                                         postHashMap.put("kullaniciAdi",kullaniciAdi)
                                         postHashMap.put("talepdetayi",talepDetayi)
                                         postHashMap.put("ilgilikurum",ilgiliKurum)
-                                        postHashMap.put("tarih",tarih)
-
+                                        postHashMap.put("begeniSayisi",begeni)
                                         database.collection("Post").add(postHashMap).addOnCompleteListener {
                                             if(it.isSuccessful){
                                                 finish()
